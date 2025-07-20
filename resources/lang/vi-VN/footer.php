@@ -2,9 +2,9 @@
 
 return [
 
-    'version'               => 'Phiên bản',
-    'powered'               => 'Powered By Akaunting',
-    'link'                  => 'https://akaunting.com',
-    'software'              => 'Phần mềm kế toán miễn phí',
+    'version' => 'Phiên bản',
+    'powered' => '',
+    'link' => '',
+    'software' => '',
 
 ];

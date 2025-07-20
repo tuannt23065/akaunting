@@ -130,7 +130,7 @@ class Users extends Controller
      */
     public function edit($user_id)
     {
-        $user = user_model_class()::query()->isNotCustomer()->find($user_id);
+        $user = user_model_class()::query()->with('contact')->isNotCustomer()->find($user_id);
 
         if ((user()->cannot('read-auth-users') && ($user->id != user()->id)) || empty($user)) {
             abort(403);
@@ -147,7 +147,7 @@ class Users extends Controller
         if ($user->isCustomer()) {
             // Show only roles with customer permission
             $roles = role_model_class()::all()->reject(function ($r) {
-                return ! $r->hasPermission('read-client-portal');
+                return !$r->hasPermission('read-client-portal');
             })->pluck('display_name', 'id');
         } else if ($user->isEmployee()) {
             // Show only roles with employee permission
@@ -365,7 +365,7 @@ class Users extends Controller
         $column = $request['column'];
         $value = $request['value'];
 
-        if (! empty($column) && ! empty($value)) {
+        if (!empty($column) && !empty($value)) {
             switch ($column) {
                 case 'id':
                     $user = user_model_class()::find((int) $value);
@@ -378,14 +378,14 @@ class Users extends Controller
             }
 
             $data = $user;
-        } elseif (! empty($column) && empty($value)) {
+        } elseif (!empty($column) && empty($value)) {
             $data = trans('validation.required', ['attribute' => $column]);
         }
 
         return response()->json([
-            'errors'  => ($user) ? false : true,
+            'errors' => ($user) ? false : true,
             'success' => ($user) ? true : false,
-            'data'    => $data,
+            'data' => $data,
         ]);
     }
 

@@ -108,11 +108,35 @@ abstract class Form extends Component
      * @return void
      */
     public function __construct(
-        string $name = '', string $type = 'text', string $label = '', string $id = null, $value = '', $valueKey = null, string $placeholder = '', string $searchText = '',
-        $options = [], $option = [], string $optionKey = 'id', string $optionValue = 'name', $fullOptions = [], $checked = null, $checkedKey = null, $selected = null, $selectedKey = null, $rows = '3',
-        $remote = false, $multiple = false, $addNew = false, $group = false,
-        bool $searchable = false, bool $disabled = false, bool $readonly = false, bool $required = true, bool $notRequired = false,
-        string $formGroupClass = '', string $inputGroupClass = '',
+        string $name = '',
+        string $type = 'text',
+        string $label = '',
+        string $id = null,
+        $value = '',
+        $valueKey = null,
+        string $placeholder = '',
+        string $searchText = '',
+        $options = [],
+        $option = [],
+        string $optionKey = 'id',
+        string $optionValue = 'name',
+        $fullOptions = [],
+        $checked = null,
+        $checkedKey = null,
+        $selected = null,
+        $selectedKey = null,
+        $rows = '3',
+        $remote = false,
+        $multiple = false,
+        $addNew = false,
+        $group = false,
+        bool $searchable = false,
+        bool $disabled = false,
+        bool $readonly = false,
+        bool $required = true,
+        bool $notRequired = false,
+        string $formGroupClass = '',
+        string $inputGroupClass = '',
         $dynamicAttributes = '',
         bool $hideCurrency = false
     ) {
@@ -155,18 +179,18 @@ abstract class Form extends Component
 
     protected function getType($type)
     {
-        if (! empty($type) && (! empty($this->type) && $type != 'text')) {
+        if (!empty($type) && (!empty($this->type) && $type != 'text')) {
             return $type;
         }
 
-        if (! empty($this->type)) {
+        if (!empty($this->type)) {
             return $this->type;
         }
     }
 
     protected function getName($name)
     {
-        if (! empty($name)) {
+        if (!empty($name)) {
             return $name;
         }
 
@@ -196,7 +220,7 @@ abstract class Form extends Component
             $valueKey = $value_keys[0];
         }
 
-        if (! empty($model->{$valueKey})) {
+        if (!empty($model->{$valueKey})) {
             $value = $model->{$valueKey};
         }
 
@@ -217,13 +241,13 @@ abstract class Form extends Component
 
     protected function getPlaceholder($placeholder)
     {
-        if (! empty($placeholder)) {
+        if (!empty($placeholder)) {
             return $placeholder;
         }
 
         $label = $this->label;
 
-        if (! empty($this->label) && ! empty($this->label->contents)) {
+        if (!empty($this->label) && !empty($this->label->contents)) {
             $label = $this->name;
         }
 
@@ -236,7 +260,7 @@ abstract class Form extends Component
 
     protected function getSearchText($searchText)
     {
-        if (! empty($searchText)) {
+        if (!empty($searchText)) {
             return $searchText;
         }
 
@@ -245,8 +269,8 @@ abstract class Form extends Component
 
     protected function getOptions($options)
     {
-        if (! empty($options)) {
-            if (is_array($options) && ! $this->group) {
+        if (!empty($options)) {
+            if ((is_array($options) || $options instanceof Collection) && !$this->group) {
                 $o = collect();
 
                 foreach ($options as $key => $value) {
@@ -271,7 +295,7 @@ abstract class Form extends Component
 
     protected function getFullOptions($fullOptions, $options, $searchable)
     {
-        if (! empty($fullOptions)) {
+        if (!empty($fullOptions)) {
             return $fullOptions;
         }
 
@@ -296,7 +320,7 @@ abstract class Form extends Component
 
     protected function getRequired($required, $notRequired)
     {
-        if (! empty($notRequired)) {
+        if (!empty($notRequired)) {
             return false;
         }
 
@@ -305,7 +329,7 @@ abstract class Form extends Component
 
     protected function getFromGroupClass($formGroupClass)
     {
-        if (! empty($formGroupClass)) {
+        if (!empty($formGroupClass)) {
             return $formGroupClass;
         }
 
@@ -314,7 +338,7 @@ abstract class Form extends Component
 
     protected function getInputGroupClass($inputGroupClass)
     {
-        if (! empty($inputGroupClass)) {
+        if (!empty($inputGroupClass)) {
             return $inputGroupClass;
         }
 
@@ -325,15 +349,15 @@ abstract class Form extends Component
     {
         $attributes = [];
 
-        if (! empty($this->required)) {
+        if (!empty($this->required)) {
             $attributes['required'] = $this->required;
         }
 
-        if (! empty($this->disabled)) {
+        if (!empty($this->disabled)) {
             $attributes['disabled'] = $this->disabled;
         }
 
-        if (! empty($this->readonly)) {
+        if (!empty($this->readonly)) {
             $attributes['readonly'] = $this->readonly;
         }
 
@@ -346,7 +370,7 @@ abstract class Form extends Component
 
     protected function setDynamicAttributes($dynamicAttributes)
     {
-        if (! empty($dynamicAttributes)) {
+        if (!empty($dynamicAttributes)) {
             $this->dynamicAttributes = $dynamicAttributes;
         }
     }

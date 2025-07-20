@@ -89,16 +89,24 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "livewire/livewire"
+            ]
         },
         "installer-paths": {
-            "modules/OfflinePayments": ["akaunting/module-offline-payments"],
-            "modules/PaypalStandard": ["akaunting/module-paypal-standard"]
+            "modules/OfflinePayments": [
+                "akaunting/module-offline-payments"
+            ],
+            "modules/PaypalStandard": [
+                "akaunting/module-paypal-standard"
+            ]
         }
     },
     "autoload": {
         "psr-4": {
-            "App\\": ["app/"],
+            "App\\": [
+                "app/"
+            ],
             "Akaunting\\Module\\Commands\\": "overrides/akaunting/laravel-module/Commands/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeds\\": "database/seeds/",
